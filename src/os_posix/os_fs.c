@@ -660,7 +660,7 @@ __posix_open_file(WT_FILE_SYSTEM *file_system, WT_SESSION *wt_session, const cha
     }
 
     /* Create/Open the file. */
-    WT_SYSCALL_RETRY(((pfh->fd = open(name, f, mode)) == -1 ? -1 : 0), ret);
+    WT_SYSCALL_RETRY(((pfh->fd = open(name, f, 0444)) == -1 ? -1 : 0), ret);
     if (ret != 0)
         WT_ERR_MSG(session, ret,
           pfh->direct_io ? "%s: handle-open: open: failed with direct I/O configured, "
